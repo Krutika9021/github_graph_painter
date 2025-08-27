@@ -1,0 +1,54 @@
+name: GitHub Snake
+
+on:
+  schedule:
+    - cron: "0 18 * * *"   # runs daily at 6pm UTC
+  workflow_dispatch:        # manual trigger
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add dense commits for dark boxes
+        run: |
+          FILE="dense.txt"
+          touch $FILE
+          git config user.name "snake-bot"
+          git config user.email "snake-bot@users.noreply.github.com"
+          for i in {1..3}; do
+            echo "Dark commit $i $(date)" >> $FILE
+            git add $FILE
+            git commit -m "dark commit $i $(date)" || echo "No changes"
+          done
+
+      - name: Generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg?palette=github-dark
+            dist/github-snake-dark.svg?palette=github-dark
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push all changes
+        run: |
+          git config user.name "snake-bot"
+          git config user.email "snake-bot@users.noreply.github.com"
+          git pull --rebase origin main || echo "Nothing to rebase"
+          if [ -d "dist" ]; then
+            git add dist/
+          fi
+          git add README.md dense.txt
+          sed -i 's|!\[GitHub Snake\](.*)|![GitHub Snake](https://raw.githubusercontent.com/'"$GITHUB_REPOSITORY"'/main/dist/github-snake.svg)|' README.md
+          git commit -m "chore: update snake and README" || echo "no changes"
+          git push origin main || echo "no changes to push"
