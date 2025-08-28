@@ -26,5 +26,5 @@ Create a custom design for your GitHub Commit Contribution Graph.
 
 ### Feel free to create Issues or PRs!
 
-- Issues [here](https://github.com/Krutika9021/github_painter/issues).
-- PRs [here](https://github.com/Krutika9021/github_painter/pulls).
+- Issues [here](https://github.com/Krutika9021/github_graph_painter/issues).
+- PRs [here](https://github.com/Krutika9021/github_graph_painter/pulls).
