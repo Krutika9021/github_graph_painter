@@ -34,12 +34,11 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            # Light theme (white background)
-            dist/github-snake.svg?bg_color=#ffffff&color_snake=#16a34a&color_dots=#ebedf0,#d1fae5,#86efac,#4ade80,#16a34a
+            # Light theme – dense green → dark green → near-black
+            dist/github-snake.svg?bg_color=#ffffff&color_snake=#15803d&color_dots=#ebedf0,#bbf7d0,#4ade80,#166534,#0f172a
           
-            # Dark theme (GitHub dark background)
+            # Dark theme (unchanged, already accurate)
             dist/github-snake-dark.svg?bg_color=#0d1117&color_snake=#22c55e&color_dots=#161b22,#0e4429,#006d32,#26a641,#39d353
-
 
 
 
