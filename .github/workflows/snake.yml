@@ -35,10 +35,10 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             # Light theme – dense green → dark green → almost-black (but still green)
-            dist/github-snake.svg?bg_color=#ffffff&color_snake=#14532d&color_dots=#ebedf0,#bbf7d0,#4ade80,#166534,#052e16
+            dist/github-snake.svg?bg_color=#ffffff&color_snake=#C3B1E1&color_dots=#ebedf0,#bbf7d0,#4ade80,#166534,#052e16
           
             # Dark theme – official GitHub dark scale
-            dist/github-snake-dark.svg?bg_color=#0d1117&color_snake=#C3B1E1 &color_dots=#161b22,#0e4429,#006d32,#26a641,#39d353
+            dist/github-snake-dark.svg?bg_color=#0d1117&color_snake=#C3B1E1&color_dots=#161b22,#0e4429,#006d32,#26a641,#39d353
 
 
         env:
